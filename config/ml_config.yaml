@@ -1,0 +1,83 @@
+# ML Configuration for ST-GNN Deep Learning Module
+# Reference: projectfile.md Step 8
+
+ml:
+  # Enable/disable ML module
+  enabled: true
+
+  # Model architecture
+  model:
+    input_dim: 9 # Number of node features
+    hidden_dim: 64
+    output_dim: 1 # Residual stress
+    num_spatial_layers: 3
+    num_temporal_layers: 2
+    spatial_conv_type: "sage" # "sage", "gcn", "gat"
+    temporal_type: "transformer" # "transformer", "gru"
+    num_attention_heads: 4
+    temporal_window: 7
+    dropout: 0.2
+    layer_norm: true
+    residual_connections: true
+    predict_uncertainty: true
+
+  # Graph construction
+  graph:
+    k_neighbors: 8
+    include_hydro_edges: true
+    include_spatial_edges: true
+    self_loops: true
+    bidirectional: true
+    normalize_features: true
+    grid_subsample: 1
+
+  # Dataset
+  dataset:
+    window_size: 7
+    stride: 1
+    prediction_horizon: 1
+    min_valid_fraction: 0.5
+    val_fraction: 0.2
+    temporal_split: true # CRITICAL: No shuffling
+
+  # Training
+  training:
+    epochs: 100
+    batch_size: 32
+    learning_rate: 0.001
+    weight_decay: 0.01
+    optimizer: "adamw"
+    scheduler: "plateau"
+    scheduler_patience: 10
+    scheduler_factor: 0.5
+    gradient_clip: 1.0
+    early_stopping: true
+    early_stopping_patience: 20
+    seed: 42
+    deterministic: true
+
+  # Loss weights
+  loss:
+    alpha_residual: 1.0 # MSE on residual
+    beta_uncertainty: 0.5 # Uncertainty calibration
+    gamma_smoothness: 0.1 # Spatial smoothness
+    lambda_consistency: 0.1 # Graph consistency
+    huber_delta: 1.0 # Use Huber loss
+
+  # Inference integration
+  inference:
+    max_residual: 1.0 # Maximum allowed correction
+    uncertainty_blend: 0.3 # Weight for DL uncertainty
+    preserve_no_decision: true # CRITICAL: Never override NO_DECISION
+
+  # Ablation settings
+  ablation:
+    run_baseline: true
+    run_hybrid: true
+    run_dl_only: true # Sanity check
+
+# IMPORTANT CONSTRAINTS:
+# 1. ML learns RESIDUALS only, not final predictions
+# 2. ML cannot override NO_DECISION zones
+# 3. Temporal train/val split (no shuffling)
+# 4. Results must be reproducible (deterministic seeds)

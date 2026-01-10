@@ -174,15 +174,65 @@ python src/main.py --city seattle --run-all
 > 🔒 **This codebase is FROZEN.** No new features will be added.
 
 --------------------------------------------------------------------------------
-## 10. What This Project Is NOT
+## 10. 🧠 Deep Learning Module (ST-GNN)
+
+> **NEW**: Optional Spatio-Temporal Graph Neural Network for residual correction.
+
+### Key Principle: Residual Learning
+The DL module does **NOT** replace the physics + Bayesian system. It learns **residual corrections**:
+
+```
+Final_Stress = Bayesian_Stress + DL_Residual
+```
+
+```mermaid
+graph LR
+    A[🌧️ Inputs] --> B[🔬 Bayesian<br/>Inference]
+    A --> C[🧠 ST-GNN]
+    B --> D[Base Stress]
+    C --> E[Residual ∆]
+    D --> F((+))
+    E --> F
+    F --> G[✅ Final Stress]
+    
+    style C fill:#e1f5fe
+    style E fill:#e1f5fe
+```
+
+### Architecture
+| Component      | Description                                |
+| -------------- | ------------------------------------------ |
+| **Spatial**    | GraphSAGE layers on drainage network graph |
+| **Temporal**   | Transformer attention across time steps    |
+| **Dual Heads** | Residual prediction + Uncertainty proxy    |
+
+### Critical Constraints
+- ❌ DL **CANNOT** override `NO_DECISION` zones
+- ❌ DL **CANNOT** make final decisions alone
+- ✅ DL only **corrects** what physics misses
+- ✅ DL provides **additional uncertainty** estimates
+
+### Configuration
+See [`config/ml_config.yaml`](config/ml_config.yaml) for all ML parameters.
+
+```bash
+# Run with ML enabled
+python src/main.py --city seattle --run-all --with-ml
+
+# Run without ML (baseline)
+python src/main.py --city seattle --run-all --no-ml
+```
+
+--------------------------------------------------------------------------------
+## 11. What This Project Is NOT
 | ❌                                | Description                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
 | **Not a Flood Prediction Model** | It infers *stress* (pressure on the system), not water depth |
-| **Not Deep Learning**            | No black-box neural networks                                 |
+| **Not Pure Deep Learning**       | DL is supportive, not dominant (Bayesian backbone)           |
 | **Not Real-Time**                | Designed for retrospective analysis and planning             |
 
 --------------------------------------------------------------------------------
-## 11. Citation & License
+## 12. Citation & License
 
 **Citation**:
 ```bibtex
