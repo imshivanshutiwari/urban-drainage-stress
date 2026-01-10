@@ -1,0 +1,81 @@
+sources:
+  noaa_isd:
+    name: NOAA Integrated Surface Database
+    automation: auto
+    format: csv
+    resolution_minutes: 60
+    spatial_type: point
+    url: https://www.ncei.noaa.gov/data/global-hourly/access/{year}/
+    region: Global
+    priority: 10
+    unit: inch
+    biases:
+    - Hourly resolution may miss short intense bursts
+    - Station density varies by region
+    limitations:
+    - Data latency of 1-2 days
+    - Some stations have gaps
+  openmeteo:
+    name: Open-Meteo Historical API
+    automation: auto
+    format: json
+    resolution_minutes: 60
+    spatial_type: grid
+    url: https://archive-api.open-meteo.com/v1/archive
+    region: Global
+    priority: 20
+    unit: mm
+    biases:
+    - Model-derived, not direct observation
+    - May underestimate convective peaks
+    limitations:
+    - Historical only (not real-time)
+    - Resolution ~10km
+  seattle_rain:
+    name: Seattle Rain Gauge Network
+    automation: auto
+    format: csv
+    resolution_minutes: 15
+    spatial_type: point
+    url: https://data.seattle.gov/resource/ye5r-uc9w.csv
+    region: Seattle, WA
+    priority: 5
+    unit: inch
+    biases:
+    - Urban heat island may affect readings
+    limitations:
+    - Seattle area only
+  imd_aws:
+    name: IMD Automatic Weather Stations
+    automation: manual
+    format: csv
+    resolution_minutes: 15
+    spatial_type: point
+    url: null
+    region: India
+    priority: 15
+    unit: mm
+    biases:
+    - Station maintenance varies
+    - Urban stations may have obstructions
+    limitations:
+    - Must request data from IMD portal
+    - Data not publicly automatable
+  imd_radar:
+    name: IMD Doppler Radar
+    automation: manual
+    format: netcdf
+    resolution_minutes: 10
+    spatial_type: grid
+    url: null
+    region: India (radar coverage)
+    priority: 25
+    unit: mm/hr
+    biases:
+    - Beam blockage in hilly terrain
+    - Z-R relationship uncertainty
+    - Ground clutter near radar
+    limitations:
+    - Radar data requires manual download
+    - NetCDF format needs preprocessing
+used_sources: []

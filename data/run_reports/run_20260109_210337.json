@@ -1,0 +1,182 @@
+{
+  "decision": "abort",
+  "can_proceed": false,
+  "explanation": "\u2717 RUN ABORTED for seattle\nCannot proceed due to critical issues:\n  \u2022 FAIL: dem covers only 0.0% (minimum 70% required)\n  \u2022 FAIL: dem quality score: 0.0/100 (minimum 50 required)\n  \u2022 FAIL: rainfall covers only 0.0% (minimum 70% required)\n  \u2022 FAIL: rainfall quality score: 0.0/100 (minimum 50 required)\n  \u2022 FAIL: complaints covers only 0.0% (minimum 70% required)\n  \u2022 FAIL: complaints quality score: 0.0/100 (minimum 50 required)",
+  "detailed_reasons": [
+    "FAIL: dem covers only 0.0% (minimum 70% required)",
+    "FAIL: dem quality score: 0.0/100 (minimum 50 required)",
+    "FAIL: rainfall covers only 0.0% (minimum 70% required)",
+    "FAIL: rainfall quality score: 0.0/100 (minimum 50 required)",
+    "FAIL: complaints covers only 0.0% (minimum 70% required)",
+    "FAIL: complaints quality score: 0.0/100 (minimum 50 required)"
+  ],
+  "datasets_used": [
+    "dem: DEM for seattle ()",
+    "rainfall: Rainfall for seattle ()",
+    "complaints: Complaints for seattle ()",
+    "dem: DEM for seattle ()"
+  ],
+  "datasets_missing": [],
+  "degraded_components": [],
+  "inference_impacts": [],
+  "uncertainty_adjustments": {
+    "base": 1.0,
+    "combined": 1.0
+  },
+  "city": "seattle",
+  "target_start": "2025-12-10T21:03:37.134606",
+  "target_end": "2026-01-09T21:03:37.134606",
+  "timestamp": "2026-01-09T21:03:37.136599",
+  "gate_version": "1.0",
+  "integrity_summary": {
+    "overall_status": "fail",
+    "can_proceed": false,
+    "summary": "\u2717 Integrity checks FAILED for seattle\n  - dem covers only 0.0% (minimum 70% required)\n  - dem quality score: 0.0/100 (minimum 50 required)\n  - rainfall covers only 0.0% (minimum 70% required)\n  - rainfall quality score: 0.0/100 (minimum 50 required)\n  - complaints covers only 0.0% (minimum 70% required)\n  - complaints quality score: 0.0/100 (minimum 50 required)",
+    "degraded_components": [],
+    "missing_components": [],
+    "checks": [
+      {
+        "check_name": "required_datasets",
+        "status": "pass",
+        "message": "All required datasets for full_run are available",
+        "details": {
+          "run_mode": "full_run"
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "temporal_coverage_dem",
+        "status": "fail",
+        "message": "dem covers only 0.0% (minimum 70% required)",
+        "details": {
+          "coverage_fraction": 0.0,
+          "threshold": 0.7
+        },
+        "recommendations": [],
+        "impact_on_inference": "Insufficient data for valid inference",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "quality_dem",
+        "status": "fail",
+        "message": "dem quality score: 0.0/100 (minimum 50 required)",
+        "details": {
+          "quality_score": 0.0,
+          "threshold": 50.0,
+          "validation_errors": []
+        },
+        "recommendations": [],
+        "impact_on_inference": "Data quality insufficient for valid inference",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "sufficiency_dem",
+        "status": "warn",
+        "message": "DEM resolution unknown or very coarse",
+        "details": {
+          "resolution_m": null
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "temporal_coverage_rainfall",
+        "status": "fail",
+        "message": "rainfall covers only 0.0% (minimum 70% required)",
+        "details": {
+          "coverage_fraction": 0.0,
+          "threshold": 0.7
+        },
+        "recommendations": [],
+        "impact_on_inference": "Insufficient data for valid inference",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "quality_rainfall",
+        "status": "fail",
+        "message": "rainfall quality score: 0.0/100 (minimum 50 required)",
+        "details": {
+          "quality_score": 0.0,
+          "threshold": 50.0,
+          "validation_errors": []
+        },
+        "recommendations": [],
+        "impact_on_inference": "Data quality insufficient for valid inference",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "sufficiency_rainfall",
+        "status": "warn",
+        "message": "rainfall has limited data volume",
+        "details": {
+          "completeness": 0.0
+        },
+        "recommendations": [],
+        "impact_on_inference": "Limited data may affect statistical power",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "temporal_coverage_complaints",
+        "status": "fail",
+        "message": "complaints covers only 0.0% (minimum 70% required)",
+        "details": {
+          "coverage_fraction": 0.0,
+          "threshold": 0.7
+        },
+        "recommendations": [],
+        "impact_on_inference": "Insufficient data for valid inference",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "quality_complaints",
+        "status": "fail",
+        "message": "complaints quality score: 0.0/100 (minimum 50 required)",
+        "details": {
+          "quality_score": 0.0,
+          "threshold": 50.0,
+          "validation_errors": []
+        },
+        "recommendations": [],
+        "impact_on_inference": "Data quality insufficient for valid inference",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "sufficiency_complaints",
+        "status": "warn",
+        "message": "complaints has limited data volume",
+        "details": {
+          "completeness": 0.0
+        },
+        "recommendations": [],
+        "impact_on_inference": "Limited data may affect statistical power",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "cross_dataset_consistency",
+        "status": "pass",
+        "message": "All datasets are consistent and compatible",
+        "details": {
+          "dataset_count": 3
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      },
+      {
+        "check_name": "validation_freshness",
+        "status": "pass",
+        "message": "All validations are fresh",
+        "details": {
+          "ttl_hours": 24
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:03:37.138603"
+      }
+    ],
+    "timestamp": "2026-01-09T21:03:37.136599"
+  }
+}

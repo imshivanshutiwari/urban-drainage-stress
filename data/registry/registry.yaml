@@ -1,0 +1,217 @@
+version: '1.0'
+updated_at: '2026-01-10T13:34:20.891648'
+config:
+  registry_path: data\registry\registry.yaml
+  backup_enabled: true
+  backup_count: 5
+  required_datasets:
+    full_run:
+    - dem
+    - rainfall
+    - complaints
+    degraded_run:
+    - dem
+    - rainfall
+    minimal_run:
+    - dem
+  min_quality_score: 50.0
+  min_temporal_coverage: 0.7
+  min_spatial_overlap: 0.5
+  validation_ttl_hours: 24
+datasets:
+  dem_seattle_dem_default:
+    dataset_id: dem_seattle_dem_default
+    dataset_type: dem
+    name: DEM for seattle
+    description: ''
+    source_name: ''
+    source_url: ''
+    automation_mode: auto
+    download_timestamp: null
+    file_path: E:\study material\data science project\2nd project\urban_drainage_stress\data\raw\terrain\dem_default.tif
+    file_hash: null
+    file_size_bytes: null
+    spatial_coverage:
+      min_lat: 0.0
+      max_lat: 0.0
+      min_lon: 0.0
+      max_lon: 0.0
+      crs: EPSG:4326
+      resolution_m: null
+      coverage_area_km2: null
+      city: ''
+      region: ''
+    temporal_coverage:
+      start: null
+      end: null
+      resolution_hours: null
+      gaps: []
+      is_static: false
+    quality_metrics:
+      completeness: 0.0
+      accuracy: 0.0
+      consistency: 0.0
+      timeliness_score: 0.0
+      overall_score: 0.0
+      grade: F
+      bias_indicators: []
+      known_limitations: []
+      warnings: []
+    validation_status: valid
+    validation_timestamp: null
+    validation_errors: []
+    created_at: '2026-01-09T20:54:38.157599'
+    updated_at: '2026-01-09T20:54:38.157599'
+    version: 1
+    parent_dataset_id: null
+    processing_history: []
+    is_required: false
+    is_available: true
+    degraded_reason: null
+  rainfall_seattle:
+    dataset_id: rainfall_seattle
+    dataset_type: rainfall
+    name: Rainfall for seattle
+    description: ''
+    source_name: ''
+    source_url: ''
+    automation_mode: auto
+    download_timestamp: null
+    file_path: E:\study material\data science project\2nd project\urban_drainage_stress\data\raw\rainfall
+    file_hash: null
+    file_size_bytes: null
+    spatial_coverage:
+      min_lat: 47.5
+      max_lat: 47.74
+      min_lon: -122.42
+      max_lon: -122.24
+      crs: EPSG:4326
+      resolution_m: 30.0
+      coverage_area_km2: null
+      city: ''
+      region: ''
+    temporal_coverage:
+      start: '2025-01-03T00:00:00'
+      end: '2026-01-03T23:00:00'
+      resolution_hours: 1.0
+      gaps: []
+      is_static: false
+    quality_metrics:
+      completeness: 100.0
+      accuracy: 85.0
+      consistency: 85.0
+      timeliness_score: 85.0
+      overall_score: 85.0
+      grade: B
+      bias_indicators: []
+      known_limitations: []
+      warnings: []
+    validation_status: valid
+    validation_timestamp: null
+    validation_errors: []
+    created_at: '2026-01-10T13:34:20.838882'
+    updated_at: '2026-01-10T13:34:20.838882'
+    version: 1
+    parent_dataset_id: null
+    processing_history: []
+    is_required: false
+    is_available: true
+    degraded_reason: null
+  complaints_seattle:
+    dataset_id: complaints_seattle
+    dataset_type: complaints
+    name: Complaints for seattle
+    description: ''
+    source_name: ''
+    source_url: ''
+    automation_mode: auto
+    download_timestamp: null
+    file_path: E:\study material\data science project\2nd project\urban_drainage_stress\data\raw\complaints
+    file_hash: null
+    file_size_bytes: null
+    spatial_coverage:
+      min_lat: 47.5
+      max_lat: 47.74
+      min_lon: -122.42
+      max_lon: -122.24
+      crs: EPSG:4326
+      resolution_m: 30.0
+      coverage_area_km2: null
+      city: ''
+      region: ''
+    temporal_coverage:
+      start: '2025-01-10T07:47:55'
+      end: '2026-01-08T16:42:15'
+      resolution_hours: null
+      gaps: []
+      is_static: true
+    quality_metrics:
+      completeness: 100.0
+      accuracy: 80.0
+      consistency: 80.0
+      timeliness_score: 80.0
+      overall_score: 80.0
+      grade: B
+      bias_indicators: []
+      known_limitations: []
+      warnings: []
+    validation_status: valid
+    validation_timestamp: null
+    validation_errors: []
+    created_at: '2026-01-10T13:34:20.882646'
+    updated_at: '2026-01-10T13:34:20.882646'
+    version: 1
+    parent_dataset_id: null
+    processing_history: []
+    is_required: false
+    is_available: true
+    degraded_reason: null
+  dem_seattle_dem_seattle:
+    dataset_id: dem_seattle_dem_seattle
+    dataset_type: dem
+    name: DEM for seattle
+    description: ''
+    source_name: ''
+    source_url: ''
+    automation_mode: auto
+    download_timestamp: null
+    file_path: E:\study material\data science project\2nd project\urban_drainage_stress\data\raw\terrain\dem_seattle.tif
+    file_hash: null
+    file_size_bytes: null
+    spatial_coverage:
+      min_lat: 47.5
+      max_lat: 47.74
+      min_lon: -122.42
+      max_lon: -122.24
+      crs: EPSG:4326
+      resolution_m: 30.0
+      coverage_area_km2: null
+      city: ''
+      region: ''
+    temporal_coverage:
+      start: null
+      end: null
+      resolution_hours: null
+      gaps: []
+      is_static: true
+    quality_metrics:
+      completeness: 100.0
+      accuracy: 85.0
+      consistency: 85.0
+      timeliness_score: 85.0
+      overall_score: 85.0
+      grade: B
+      bias_indicators: []
+      known_limitations: []
+      warnings: []
+    validation_status: valid
+    validation_timestamp: null
+    validation_errors: []
+    created_at: '2026-01-10T13:34:20.744222'
+    updated_at: '2026-01-10T13:34:20.745216'
+    version: 1
+    parent_dataset_id: null
+    processing_history: []
+    is_required: false
+    is_available: true
+    degraded_reason: null

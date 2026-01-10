@@ -1,0 +1,45 @@
+
+============================================================
+FINAL SYSTEM STATUS REPORT
+============================================================
+
+Run Completed: 2026-01-09T21:04:15.712212
+City: seattle
+Event Period: 2024-01-01T00:00:00 to 2024-01-31T00:00:00
+Execution Time: 0:00:38.850970
+
+Run Type: DEGRADED
+  Uncertainty Multiplier: 2.00x
+
+Datasets Used:
+  [+] dem: DEM for seattle ()
+  [+] rainfall: Rainfall for seattle ()
+  [+] complaints: Complaints for seattle ()
+  [+] dem: DEM for seattle ()
+
+Datasets Missing:
+  (none)
+
+Outputs Generated:
+  [x] stress_map_png: 1 file(s)
+  [x] uncertainty_map_png: 1 file(s)
+  [x] decision_map_png: 1 file(s)
+  [x] dashboard_png: 1 file(s)
+  [x] timeseries_png: 1 file(s)
+  [x] risk_distribution_png: 1 file(s)
+  [x] decision_geojson: 3 file(s)
+  [x] run_report: 40 file(s)
+
+Known Limitations:
+  - ALL - forced override
+
+Stage Results:
+  [OK] rainfall_ingestion
+  [OK] complaints_ingestion
+  [OK] terrain
+  [OK] inference
+  [OK] validation
+  [OK] outputs
+  [OK] output_verification
+
+============================================================

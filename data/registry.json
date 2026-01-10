@@ -1,0 +1,26 @@
+{
+  "rainfall": {
+    "name": "rainfall",
+    "path": "E:\\study material\\data science project\\2nd project\\urban_drainage_stress\\data\\raw\\rainfall\\rainfall_seattle_real.csv",
+    "source": "Open-Meteo Archive API (real precipitation)",
+    "downloaded_at": "2026-01-10T13:34:20.273920",
+    "sha256": "e77075dbb53b8bffcf5d65dcb58a262b1c69d75ffd30e28dd72b289ccc9056fa",
+    "notes": "city=seattle, source=Open-Meteo"
+  },
+  "complaints": {
+    "name": "complaints",
+    "path": "E:\\study material\\data science project\\2nd project\\urban_drainage_stress\\data\\raw\\complaints\\complaints_seattle.csv",
+    "source": "seattle_csr",
+    "downloaded_at": "2026-01-09T20:24:40.679840",
+    "sha256": "b5713dd5526abe2a2f7282f90f93ba803ee2452644d3aa61ad0a47a818608063",
+    "notes": "city=seattle, real_data=True, records=3087"
+  },
+  "dem": {
+    "name": "dem",
+    "path": "E:\\study material\\data science project\\2nd project\\urban_drainage_stress\\data\\raw\\terrain\\dem_seattle.tif",
+    "source": "synthetic",
+    "downloaded_at": "2026-01-09T20:43:41.403619",
+    "sha256": "020bec694a9e2e50ef7fe93d6cfbcda6b95f37d49d78bcdb6f4800aa933ee2c0",
+    "notes": "city=seattle"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "decision": "full_run",
+  "can_proceed": true,
+  "explanation": "[OK] FULL RUN APPROVED for seattle\nAll 4 required datasets available with acceptable quality.",
+  "detailed_reasons": [
+    "All integrity checks passed"
+  ],
+  "datasets_used": [
+    "dem: DEM for seattle ()",
+    "rainfall: Rainfall for seattle ()",
+    "complaints: Complaints for seattle ()",
+    "dem: DEM for seattle ()"
+  ],
+  "datasets_missing": [],
+  "degraded_components": [],
+  "inference_impacts": [],
+  "uncertainty_adjustments": {
+    "base": 1.0
+  },
+  "city": "seattle",
+  "target_start": "2025-01-03T00:00:00",
+  "target_end": "2025-02-02T00:00:00",
+  "timestamp": "2026-01-09T21:50:15.838708",
+  "gate_version": "1.0",
+  "integrity_summary": {
+    "overall_status": "pass",
+    "can_proceed": true,
+    "summary": "\u2713 All integrity checks passed for seattle",
+    "degraded_components": [],
+    "missing_components": [],
+    "checks": [
+      {
+        "check_name": "required_datasets",
+        "status": "pass",
+        "message": "All required datasets for full_run are available",
+        "details": {
+          "run_mode": "full_run"
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.841703"
+      },
+      {
+        "check_name": "temporal_coverage_dem",
+        "status": "pass",
+        "message": "dem is static data (always valid)",
+        "details": {
+          "dataset_id": "dem_seattle_dem_seattle",
+          "is_static": true
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.841703"
+      },
+      {
+        "check_name": "quality_dem",
+        "status": "pass",
+        "message": "dem quality score: 85.0/100 (grade: B)",
+        "details": {
+          "quality_score": 85.0,
+          "grade": "B",
+          "dataset_id": "dem_seattle_dem_seattle"
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.841703"
+      },
+      {
+        "check_name": "sufficiency_dem",
+        "status": "pass",
+        "message": "DEM resolution: 30.0m (sufficient)",
+        "details": {
+          "resolution_m": 30.0
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.841703"
+      },
+      {
+        "check_name": "temporal_coverage_rainfall",
+        "status": "pass",
+        "message": "rainfall covers 100.0% of target period",
+        "details": {
+          "coverage_fraction": 1.0,
+          "dataset_id": "rainfall_seattle"
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      },
+      {
+        "check_name": "quality_rainfall",
+        "status": "pass",
+        "message": "rainfall quality score: 85.0/100 (grade: B)",
+        "details": {
+          "quality_score": 85.0,
+          "grade": "B",
+          "dataset_id": "rainfall_seattle"
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      },
+      {
+        "check_name": "sufficiency_rainfall",
+        "status": "pass",
+        "message": "rainfall has sufficient data volume",
+        "details": {
+          "completeness": 100.0
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      },
+      {
+        "check_name": "temporal_coverage_complaints",
+        "status": "pass",
+        "message": "complaints is static data (always valid)",
+        "details": {
+          "dataset_id": "complaints_seattle",
+          "is_static": true
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      },
+      {
+        "check_name": "quality_complaints",
+        "status": "pass",
+        "message": "complaints quality score: 80.0/100 (grade: B)",
+        "details": {
+          "quality_score": 80.0,
+          "grade": "B",
+          "dataset_id": "complaints_seattle"
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      },
+      {
+        "check_name": "sufficiency_complaints",
+        "status": "pass",
+        "message": "complaints has sufficient data volume",
+        "details": {
+          "completeness": 100.0
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      },
+      {
+        "check_name": "cross_dataset_consistency",
+        "status": "pass",
+        "message": "All datasets are consistent and compatible",
+        "details": {
+          "dataset_count": 3
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      },
+      {
+        "check_name": "validation_freshness",
+        "status": "pass",
+        "message": "All validations are fresh",
+        "details": {
+          "ttl_hours": 24
+        },
+        "recommendations": [],
+        "impact_on_inference": "",
+        "timestamp": "2026-01-09T21:50:15.842703"
+      }
+    ],
+    "timestamp": "2026-01-09T21:50:15.838708"
+  }
+}

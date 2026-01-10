@@ -1,0 +1,47 @@
+
+============================================================
+FINAL SYSTEM STATUS REPORT
+============================================================
+
+Run Completed: 2026-01-10T13:33:57.451259
+City: seattle
+Event Period: 2025-01-03T00:00:00 to 2025-01-15T00:00:00
+Execution Time: 0:00:43.426645
+
+Run Type: FULL
+
+Datasets Used:
+  (none recorded)
+
+Datasets Missing:
+  (none)
+
+Outputs Generated:
+  [x] stress_mean_map: 1 file(s)
+  [x] variance_map: 1 file(s)
+  [x] uncertainty_map: 1 file(s)
+  [x] confidence_map: 1 file(s)
+  [x] terrain_overlay: 1 file(s)
+  [x] action_map: 1 file(s)
+  [x] expected_loss_map: 1 file(s)
+  [x] no_decision_map: 1 file(s)
+  [x] decision_justification: 1 file(s)
+  [x] rainfall_coverage: 2 file(s)
+  [x] complaint_density: 1 file(s)
+  [x] evidence_strength: 1 file(s)
+  [x] stress_timeseries: 1 file(s)
+  [x] lead_lag_analysis: 1 file(s)
+  [x] stress_persistence: 1 file(s)
+  [x] decision_geojson: 3 file(s)
+  [x] run_report: 72 file(s)
+
+Stage Results:
+  [OK] rainfall_ingestion
+  [OK] complaints_ingestion
+  [OK] terrain
+  [OK] inference
+  [OK] validation
+  [OK] outputs
+  [OK] output_verification
+
+============================================================

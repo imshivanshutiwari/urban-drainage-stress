@@ -1,0 +1,99 @@
+dem:
+- path: E:\study material\data science project\2nd project\urban_drainage_stress\data\processed\terrain\dem_default.tif
+  source: synthetic
+  download_date: '2026-01-09T18:08:11.123140'
+  resolution_m: 33.25847880299476
+  crs: EPSG:4326
+  bounds:
+    left: -122.41000000000001
+    bottom: 47.54
+    right: -122.28999999999999
+    top: 47.66
+  elevation_stats:
+    min: 1.0
+    max: 100.55088806152344
+    mean: 48.983123779296875
+  validation:
+    is_valid: true
+    errors: []
+    warnings: []
+  limitations:
+  - 30m resolution; not suitable for parcel-level analysis
+  - Vertical accuracy ~5-10m; relative accuracy better
+  - Urban areas may have building artifacts
+
+complaints:
+  sources:
+    nyc_311:
+      name: NYC 311 Service Requests
+      api_endpoint: https://data.cityofnewyork.us/resource/erm2-nwe9.csv
+      automation_level: fully_auto
+      spatial_resolution: point
+      update_frequency: daily
+      known_biases:
+        - socioeconomic_underreporting
+        - vocal_minority_overreporting
+    seattle_csr:
+      name: Seattle Customer Service Requests
+      api_endpoint: https://data.seattle.gov/resource/pu5n-trf4.csv
+      automation_level: fully_auto
+      spatial_resolution: point
+      update_frequency: daily
+      known_biases:
+        - socioeconomic_underreporting
+        - temporal_delay
+    chicago_311:
+      name: Chicago 311 Service Requests
+      api_endpoint: https://data.cityofchicago.org/resource/v6vf-nfxy.csv
+      automation_level: fully_auto
+      spatial_resolution: point
+      update_frequency: daily
+      known_biases:
+        - socioeconomic_underreporting
+        - selection_bias
+    bmc_mumbai:
+      name: BMC Mumbai Complaints
+      automation_level: manual
+      spatial_resolution: ward
+      notes: Requires manual download from municipal portal
+      known_biases:
+        - ward_aggregation_loss
+        - socioeconomic_underreporting
+        - temporal_delay
+    bbmp_bangalore:
+      name: BBMP Bangalore Complaints
+      automation_level: manual
+      spatial_resolution: ward
+      notes: Requires manual download from municipal portal
+      known_biases:
+        - ward_aggregation_loss
+        - socioeconomic_underreporting
+    synthetic:
+      name: Synthetic Test Data
+      automation_level: fully_auto
+      spatial_resolution: point
+      notes: For testing only - not real data
+      known_biases:
+        - Not representative of real reporting patterns
+  
+  bias_definitions:
+    socioeconomic_underreporting:
+      description: Low-income areas systematically underreport
+      severity: high
+      correction: Use population density normalization
+    vocal_minority_overreporting:
+      description: Repeat complainers inflate counts
+      severity: medium
+      correction: Deduplicate by location and time window
+    ward_aggregation_loss:
+      description: Point locations lost when aggregated to ward
+      severity: medium
+      correction: Cannot recover; treat ward as spatial unit
+    temporal_delay:
+      description: Complaints may be filed days after event
+      severity: medium
+      correction: Expand temporal matching window
+    selection_bias:
+      description: Only certain complaint types are water-related
+      severity: low
+      correction: Filter by complaint type keywords
