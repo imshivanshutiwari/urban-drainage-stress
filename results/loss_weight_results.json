@@ -1,0 +1,227 @@
+{
+  "stage": "loss_weights",
+  "results": [
+    {
+      "alpha": 0.5,
+      "beta": 0.1,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.023014812328172582,
+      "improvement": 22.24246948363935,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.1,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.024108277533308457,
+      "improvement": 18.54810287988254,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.1,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.025254252624018772,
+      "improvement": 14.676327094084861,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.3,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.023314568080006887,
+      "improvement": 21.22971879558882,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.3,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.021681693033790004,
+      "improvement": 26.746528119303807,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.3,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.0218895364978796,
+      "improvement": 26.044311030972843,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.5,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.022439118652018458,
+      "improvement": 24.18750027308592,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.5,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.022407275923891308,
+      "improvement": 24.295083679318616,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 0.5,
+      "beta": 0.5,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.022629238145642598,
+      "improvement": 23.545165149234492,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.1,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.02344491638881371,
+      "improvement": 20.7893257802004,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.1,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.024441585300005043,
+      "improvement": 17.421993812787324,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.1,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.02386062751371845,
+      "improvement": 19.384809852812108,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.3,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.023291653817135233,
+      "improvement": 21.30713661108504,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.3,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.023453967258931313,
+      "improvement": 20.758746634069038,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.3,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.024245467811757456,
+      "improvement": 18.084593679332254,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.5,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.025206446634604345,
+      "improvement": 14.837843756821528,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.5,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.022858447187187814,
+      "improvement": 22.770762612796645,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 1.0,
+      "beta": 0.5,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.02359073551753414,
+      "improvement": 20.296663264005634,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.1,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.022872662848014817,
+      "improvement": 22.72273377533301,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.1,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.023137878378733257,
+      "improvement": 21.826680206475192,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.1,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.02514736346149974,
+      "improvement": 15.0374613583112,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.3,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.02353387132004501,
+      "improvement": 20.488783864795273,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.3,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.024458776633969642,
+      "improvement": 17.363911406713004,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.3,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.021575047461221797,
+      "improvement": 27.10683939385008,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 0.05,
+      "hybrid_rmse": 0.029524243913502144,
+      "improvement": 0.24979285768942827,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 0.1,
+      "hybrid_rmse": 0.02255128821313007,
+      "improvement": 23.808525726312574,
+      "constraints_satisfied": true
+    },
+    {
+      "alpha": 2.0,
+      "beta": 0.5,
+      "gamma": 0.2,
+      "hybrid_rmse": 0.022790391127213986,
+      "improvement": 23.00069588728007,
+      "constraints_satisfied": true
+    }
+  ],
+  "best_config": {
+    "alpha": 2.0,
+    "beta": 0.3,
+    "gamma": 0.2
+  },
+  "best_hybrid_rmse": 0.021575047461221797
+}

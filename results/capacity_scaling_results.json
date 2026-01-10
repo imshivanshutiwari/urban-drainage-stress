@@ -1,0 +1,100 @@
+{
+  "stage": "capacity_scaling",
+  "results": [
+    {
+      "hidden_dim": 32,
+      "num_spatial_layers": 2,
+      "hybrid_rmse": 0.026255812282003393,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.1674614917794068,
+      "improvement": 11.292471316370658,
+      "num_params": 10978,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 32,
+      "num_spatial_layers": 3,
+      "hybrid_rmse": 0.025908383564873277,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.15835819758537645,
+      "improvement": 12.466289233688,
+      "num_params": 12034,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 32,
+      "num_spatial_layers": 4,
+      "hybrid_rmse": 0.02548445488222633,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.16681440073941012,
+      "improvement": 13.898568889400401,
+      "num_params": 13090,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 64,
+      "num_spatial_layers": 2,
+      "hybrid_rmse": 0.024627232219644198,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.17008113172625303,
+      "improvement": 16.794769666299747,
+      "num_params": 38210,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 64,
+      "num_spatial_layers": 3,
+      "hybrid_rmse": 0.02491410866986821,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.16430778000407995,
+      "improvement": 15.825532810719874,
+      "num_params": 42370,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 64,
+      "num_spatial_layers": 4,
+      "hybrid_rmse": 0.024456834533664214,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.16791282839339125,
+      "improvement": 17.370472960273027,
+      "num_params": 46530,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 128,
+      "num_spatial_layers": 2,
+      "hybrid_rmse": 0.024316565799096496,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.1607244665408496,
+      "improvement": 17.844382990609855,
+      "num_params": 141826,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 128,
+      "num_spatial_layers": 3,
+      "hybrid_rmse": 0.02231830255803889,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.16580402919948747,
+      "improvement": 24.59568787768281,
+      "num_params": 158338,
+      "constraints_satisfied": true
+    },
+    {
+      "hidden_dim": 128,
+      "num_spatial_layers": 4,
+      "hybrid_rmse": 0.02258241919247009,
+      "base_rmse": 0.02959817804827293,
+      "dl_only_rmse": 0.1618861293601109,
+      "improvement": 23.70334702480855,
+      "num_params": 174850,
+      "constraints_satisfied": true
+    }
+  ],
+  "best_config": {
+    "hidden_dim": 128,
+    "num_spatial_layers": 3
+  },
+  "best_hybrid_rmse": 0.02231830255803889
+}

@@ -1,0 +1,21 @@
+{
+  "stage": "temporal_depth",
+  "results": [
+    {
+      "num_temporal_layers": 1,
+      "hybrid_rmse": 0.023308017290231905,
+      "improvement": 21.25185120442932,
+      "constraints_satisfied": true
+    },
+    {
+      "num_temporal_layers": 2,
+      "hybrid_rmse": 0.030573266072091366,
+      "improvement": -3.2944190761611174,
+      "constraints_satisfied": false
+    }
+  ],
+  "best_config": {
+    "num_temporal_layers": 1
+  },
+  "best_hybrid_rmse": 0.023308017290231905
+}

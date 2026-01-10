@@ -1,0 +1,82 @@
+{
+  "stage": "regularization",
+  "results": [
+    {
+      "dropout": 0.1,
+      "weight_decay": 0.001,
+      "hybrid_rmse": 0.021499873466768515,
+      "dl_only_rmse": 0.16485250661093873,
+      "improvement": 27.36082122452451,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.1,
+      "weight_decay": 0.01,
+      "hybrid_rmse": 0.023171156749702423,
+      "dl_only_rmse": 0.1661852962509393,
+      "improvement": 21.714246356949417,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.1,
+      "weight_decay": 0.1,
+      "hybrid_rmse": 0.024097543610954498,
+      "dl_only_rmse": 0.16378028792200064,
+      "improvement": 18.58436836330673,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.2,
+      "weight_decay": 0.001,
+      "hybrid_rmse": 0.024414441788717316,
+      "dl_only_rmse": 0.17162772373999963,
+      "improvement": 17.513700509204444,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.2,
+      "weight_decay": 0.01,
+      "hybrid_rmse": 0.02307462260082587,
+      "dl_only_rmse": 0.16924463702236012,
+      "improvement": 22.040395313547727,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.2,
+      "weight_decay": 0.1,
+      "hybrid_rmse": 0.025591368928356728,
+      "dl_only_rmse": 0.1627978411399208,
+      "improvement": 13.537350553744648,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.3,
+      "weight_decay": 0.001,
+      "hybrid_rmse": 0.02362092192284366,
+      "dl_only_rmse": 0.16698556292740133,
+      "improvement": 20.194675887416818,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.3,
+      "weight_decay": 0.01,
+      "hybrid_rmse": 0.02291799563562749,
+      "dl_only_rmse": 0.1641502543496735,
+      "improvement": 22.56957303841623,
+      "constraints_satisfied": true
+    },
+    {
+      "dropout": 0.3,
+      "weight_decay": 0.1,
+      "hybrid_rmse": 0.024231248355104897,
+      "dl_only_rmse": 0.1695156591462376,
+      "improvement": 18.13263534132026,
+      "constraints_satisfied": true
+    }
+  ],
+  "best_config": {
+    "dropout": 0.1,
+    "weight_decay": 0.001
+  },
+  "best_hybrid_rmse": 0.021499873466768515
+}
