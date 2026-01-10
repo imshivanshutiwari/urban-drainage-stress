@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-01-10T22:17:06.285676",
+  "total_timesteps": 100,
+  "num_nodes": 500,
+  "num_features": 8,
+  "num_edges": 4000,
+  "train_timesteps": 70,
+  "val_timesteps": 30,
+  "train_fraction": 0.7,
+  "val_fraction": 0.3,
+  "feature_names": [
+    "rainfall_intensity",
+    "rainfall_accumulation",
+    "elevation",
+    "slope",
+    "flow_accumulation",
+    "bayesian_stress",
+    "bayesian_variance",
+    "complaint_density"
+  ],
+  "target": "residual = observed_stress - bayesian_stress",
+  "residual_stats": {
+    "mean": 0.028287125751376152,
+    "std": 0.0348525233566761,
+    "min": -0.13788993656635284,
+    "max": 0.17457540333271027
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-01-10T22:17:39.860177",
+  "base_system": {
+    "description": "Bayesian only (no DL correction)",
+    "rmse": 0.02959817834198475
+  },
+  "hybrid_system": {
+    "description": "Bayesian + ST-GNN residual",
+    "rmse": 0.024543803185224533
+  },
+  "dl_only_system": {
+    "description": "ST-GNN only (no physics) - SANITY CHECK",
+    "rmse": 0.15937039256095886
+  },
+  "improvement": {
+    "hybrid_vs_base": 17.07664281129837
+  },
+  "sanity_check": {
+    "dl_only_worse_than_hybrid": true,
+    "hybrid_beats_base": true
+  }
+}
