@@ -1,0 +1,19 @@
+[project]
+name = "urban-drainage-stress"
+version = "0.1.0"
+description = "Research-grade scaffold for urban drainage stress inference"
+authors = [{ name = "Urban Systems Team" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+	"numpy>=2.2,<3",
+	"pandas>=2.2,<3",
+	"geopandas>=1.1,<2",
+	"shapely>=2.1,<3",
+	"pyproj>=3.7,<4",
+	"rasterio>=1.4,<2",
+	"xarray>=2024.1",
+]
+
+[tool.setuptools]
+packages = ["src"]

@@ -1,0 +1,61 @@
+{
+  "title": "Case Study: January 2025 Winter Storm",
+  "location": {
+    "city": "Seattle",
+    "state": "Washington",
+    "roi": {
+      "lon_min": -122.42,
+      "lon_max": -122.24,
+      "lat_min": 47.5,
+      "lat_max": 47.74
+    }
+  },
+  "period": {
+    "start": "2025-01-03T00:00:00",
+    "end": "2025-01-15T00:00:00",
+    "duration_days": 13
+  },
+  "meteorology": {
+    "total_rainfall_mm": 299.0,
+    "peak_rainfall_mm": 52.0,
+    "peak_day": 4,
+    "daily_totals": [
+      8.0,
+      15.0,
+      25.0,
+      35.0,
+      52.0,
+      48.0,
+      42.0,
+      28.0,
+      18.0,
+      12.0,
+      8.0,
+      5.0,
+      3.0
+    ]
+  },
+  "complaints": {
+    "total": 300.0,
+    "peak_day": 5
+  },
+  "inference_results": {
+    "mean_stress": 8.73171329498291,
+    "max_stress": 17.650453567504883,
+    "mean_variance": 4.380406856536865
+  },
+  "decisions": {
+    "no_decision_fraction": 0.16
+  },
+  "generated_files": [
+    "1_event_description.png",
+    "2_rainfall_evolution.png",
+    "3_complaint_evolution.png",
+    "4_stress_evolution.png",
+    "5_uncertainty_evolution.png",
+    "6_decision_maps.png",
+    "7_baseline_comparison.png",
+    "8_interpretation_summary.png"
+  ],
+  "timestamp": "2026-01-10T20:23:04.209095"
+}
