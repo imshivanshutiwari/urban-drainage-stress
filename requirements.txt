@@ -1,0 +1,15 @@
+# Urban Drainage Stress System - Streamlit Cloud Dependencies
+# ============================================================
+
+# Core
+streamlit>=1.28.0
+plotly>=5.18.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Deep Learning (for model loading)
+torch>=2.0.0
+torch-geometric>=2.4.0
+
+# Other
+scipy>=1.11.0
