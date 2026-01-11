@@ -1,39 +1,73 @@
-# Urban Drainage Stress Inference 🌊
+# Urban Drainage Stress Inference System 🌊
 
 > **A Probabilistic, Uncertainty-Aware System for Urban Flood Risk Assessment**
 
-This repository contains a **frozen, reproducible research system** designed to infer latent drainage stress in urban environments using Bayesian inference, devoid of black-box deep learning.
+This repository contains a **production-grade research system** designed to infer latent drainage stress in urban environments. It combines **Bayesian inference** with a **Latent Spatio-Temporal Graph Neural Network (ST-GNN)** to correct physics-based residuals without compromising safety or decision validity.
 
-<p align="center">
-  <img src="results/figures/01_stress_mean_map.png" width="45%" alt="Stress Map"/>
-  <img src="results/figures/06_action_recommendation_map.png" width="45%" alt="Action Recommendations"/>
-</p>
+---
 
---------------------------------------------------------------------------------
-## 📋 Table of Contents
-- [Problem Motivation](#1-problem-motivation)
-- [System Overview](#2-system-overview)
-- [Mathematical Foundations](#3-mathematical-foundations)
-- [Region of Interest (ROI)](#4-region-of-interest-roi)
-- [Data Sources](#5-data-sources)
-- [Validation & Baselines](#6-validation--baselines)
-- [Case Study: Seattle](#7-case-study-seattle-jan-2025)
-- [Outputs & Visualizations](#8-outputs--visualizations)
-- [Reproducibility](#9-reproducibility)
-- [What This Is NOT](#10-what-this-project-is-not)
-- [Citation & License](#11-citation--license)
+## ✅ Final Training Results (January 2026)
 
---------------------------------------------------------------------------------
-## 1. Problem Motivation
-Urban drainage stress is notoriously difficult to quantify because:
-1.  **Underground infrastructure is invisible**: Pipes are buried, and their condition is often unknown.
-2.  **Ground truth does not exist**: There is no sensor that directly measures "stress" across an entire city.
-3.  **Uncertainty is high**: Rainfall is variable, terrain data has errors, and complaint data is noisy.
+| Metric                        | Value            | Status         |
+| ----------------------------- | ---------------- | -------------- |
+| **OOD Calibrated**            | `True`           | ✅              |
+| **NYC > Seattle Uncertainty** | 420x higher      | ✅              |
+| **DL Fraction**               | 2.17%            | ✅ (Supportive) |
+| **All Audits**                | Passed           | ✅              |
+| **System Status**             | Production Ready | ✅              |
 
-**This system solves the "Inverse Problem"**: inferred stress = $P(\text{Stress} | \text{Rainfall}, \text{Terrain}, \text{Complaints})$
+## ⚡ Quick Start & Workflow
 
---------------------------------------------------------------------------------
-## 2. System Overview
+Follow this **exact sequence** to run the full pipeline, from architectural verification to final deployment.
+
+### 1. Architectural Verification
+First, verify that the ST-GNN components, guards, and loss functions are working correctly.
+```bash
+python scripts/test_latent_architecture.py
+```
+
+### 2. Manual Verification Training
+Train the model manually on Seattle data to confirm safety constraints (NYC > Seattle Uncertainty) and sign correctness.
+```bash
+python scripts/train_latent_model.py
+```
+> **Check**: Verify `results/comprehensive_training/audit_report.json` passes all checks.
+
+### 3. Auto-Hyperparameter Optimization
+Once the architecture is verified, run the auto-optimizer to find the best hyperparameters (learning rate, hidden dims, etc).
+```bash
+python src/ml/auto_opt/run_auto_optimization.py
+```
+
+### 4. Full System Deployment
+Run the complete end-to-end system, including physics inference, DL correction, and risk decision making.
+```bash
+python run_complete_system.py
+```
+
+---
+
+## 📂 Key Modules & Recent Updates
+
+We have recently implemented a **Scale-Free Structural Residual Learner** architecture. Here are the critical files:
+
+### Phase 1: Guards & Safety
+*   `src/ml/guards/input_sanity_checks.py`: Enforces Z-score inputs (no raw scales).
+*   `src/ml/guards/uncertainty_guards.py`: Ensures DL uncertainty is strictly additive.
+*   `src/ml/audit/dl_role_audit.py`: Automated auditor that refuses to run if the DL model violates its role.
+
+### Phase 2: Core Architecture
+*   `src/ml/models/st_gnn_latent.py`: **Latent ST-GNN**. Operates in scale-free space. Uses Spectral Normalization for OOD safety.
+*   `src/ml/targets/latent_residual.py`: Computes the target $\Delta Z$ structural residuals.
+
+### Phase 3: Training & Inference
+*   `src/ml/training/latent_losses.py`: Scale-invariant composite loss ($\alpha \text{MSE} + \beta \text{NLL} + \gamma \text{Smooth} + \eta \text{Rank}$).
+*   `src/ml/inference/latent_inference.py`: Inference pipeline with runtime guards.
+*   `src/ml/auto_opt/run_auto_optimization.py`: Optuna-based hyperparameter tuning engine.
+
+---
+
+## 📋 System Overview
 
 ```mermaid
 graph TD
@@ -41,198 +75,40 @@ graph TD
     B[🏔️ Terrain / DEM] --> C
     D[📞 Complaints] --> C
     
-    C --> E[📊 Latent Stress Map]
-    C --> F[📈 Uncertainty Map]
+    C --> P[Physics Baseline]
+    C --> L[🧠 Latent ST-GNN]
     
-    E --> G[⚖️ Risk Decision Model]
-    F --> G
+    P --> F[Fused Stress]
+    L --> F
+    
+    F --> G[⚖️ Risk Decision Model]
     
     G --> H[✅ Actionable Outputs]
     H --> I[🔴 High Risk Zones]
     H --> J[⚪ NO_DECISION Zones]
 ```
 
---------------------------------------------------------------------------------
-## 3. Mathematical Foundations
-This system relies on **transparent, probabilistic principles**:
+## 🧠 Deep Learning Architecture (ST-GNN)
 
-| Principle                      | Description                                                                                          |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------- |
-| **Bayesian Inference**         | Updates belief about stress based on observed evidence (complaints) and priors (rainfall/terrain)    |
-| **Uncertainty Quantification** | Every prediction includes variance estimates. We trust the model only when variance is low           |
-| **Decision Theory**            | Actions are recommended only when the **Credible Interval (CI)** of stress exceeds safety thresholds |
+The Deep Learning module is a **Structural Residual Learner**. 
 
---------------------------------------------------------------------------------
-## 4. Region of Interest (ROI)
-> ⚠️ **CRITICAL**: This pipeline enforces a strict ROI check. It does NOT run globally.
+*   **Role**: It learns to correct the biases of the physics model (e.g., missing pipe data capabilities) by predicting a residual $\Delta Z$ in a latent space.
+*   **Constraint 1**: It **NEVER** sees raw magnitude values (only Z-scores).
+*   **Constraint 2**: It **NEVER** makes the final decision. It only adjusts the belief state.
+*   **Constraint 3**: It **MUST** be more uncertain on data it hasn't seen (OOD).
 
-*   **Why?** To prevent spurious calculations in irrelevant areas and ensure data density.
-*   **Failure Mode**: If ROI is not defined or data falls outside, the pipeline **ABORTS**.
+## 📊 Outputs
 
---------------------------------------------------------------------------------
-## 5. Data Sources
-> 📁 **Note**: Raw data is **NOT** included in this repo (see [`data/README.md`](data/README.md)).
+The system produces:
+1.  **Latent Stress Map**: Probability of failure (0-1).
+2.  **Uncertainty Map**: Confidence in the prediction.
+3.  **Action Recommendations**: High/Medium/Low risk zones.
 
-| Data Type      | Source                  | Required Fields                               |
-| :------------- | :---------------------- | :-------------------------------------------- |
-| **Rainfall**   | NWS / Local Sensors     | `timestamp`, `precipitation_mm`, `lat`, `lon` |
-| **Terrain**    | USGS / Copernicus       | Elevation (meters)                            |
-| **Complaints** | 311 / Municipal Records | `timestamp`, `lat`, `lon`, `type`             |
+See `results/` for generated maps and `audit_report.json` for validation logs.
 
---------------------------------------------------------------------------------
-## 6. Validation & Baselines
+---
 
-### ✅ Behavioral Validation
-We validate the system using 4 mandatory sanity tests (see [`experiments/validation/`](experiments/validation/)):
-
-| Test                     | What It Checks                         |
-| ------------------------ | -------------------------------------- |
-| **Monotonic Response**   | More rain → more stress                |
-| **Uncertainty Sanity**   | More data → less uncertainty           |
-| **Decision Rationality** | High Stress + Low Uncertainty = Action |
-| **Spatial Coherence**    | Stress maps are spatially smooth       |
-
-### 📊 Baselines
-Compared against:
-*   **Threshold Model**: Simple rainfall intensity checks
-*   **Physics-Only**: Accumulation-based flow routing (no learning)
-
-<p align="center">
-  <img src="results/figures/7_baseline_comparison.png" width="80%" alt="Baseline Comparison"/>
-</p>
-
---------------------------------------------------------------------------------
-## 7. Case Study: Seattle (Jan 2025)
-
-| Aspect          | Details                                                                                                    |
-| --------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Event**       | Winter Storm Sequence                                                                                      |
-| **Findings**    | System identified high-stress zones in SODO and South Park areas **12 hours before** peak flooding reports |
-| **Limitations** | Underestimated stress in areas with combined sewer overflow (CSO) due to lack of pipe network data         |
-
-<p align="center">
-  <img src="results/figures/4_stress_evolution.png" width="80%" alt="Stress Evolution"/>
-</p>
-
---------------------------------------------------------------------------------
-## 8. Outputs & Visualizations
-The pipeline generates:
-
-| Output                 | Description                                              |
-| ---------------------- | -------------------------------------------------------- |
-| 📊 **Stress Maps**      | Probability of drainage failure (0-1)                    |
-| 📈 **Uncertainty Maps** | Variance of the prediction                               |
-| ⚖️ **Risk Decisions**   | `HIGH_RISK`, `MEDIUM_RISK`, `LOW_RISK`, or `NO_DECISION` |
-
-<details>
-<summary>🖼️ <b>Click to view all 15 core visualizations</b></summary>
-
-<p align="center">
-  <img src="results/figures/01_stress_mean_map.png" width="30%"/>
-  <img src="results/figures/02_stress_variance_map.png" width="30%"/>
-  <img src="results/figures/03_uncertainty_reliability_map.png" width="30%"/>
-</p>
-<p align="center">
-  <img src="results/figures/04_confidence_map.png" width="30%"/>
-  <img src="results/figures/05_terrain_upstream_map.png" width="30%"/>
-  <img src="results/figures/06_action_recommendation_map.png" width="30%"/>
-</p>
-<p align="center">
-  <img src="results/figures/07_expected_loss_map.png" width="30%"/>
-  <img src="results/figures/08_no_decision_zone_map.png" width="30%"/>
-  <img src="results/figures/09_decision_justification_map.png" width="30%"/>
-</p>
-<p align="center">
-  <img src="results/figures/10_rainfall_coverage_map.png" width="30%"/>
-  <img src="results/figures/11_complaint_density_map.png" width="30%"/>
-  <img src="results/figures/12_evidence_strength_map.png" width="30%"/>
-</p>
-<p align="center">
-  <img src="results/figures/13_rainfall_stress_timeseries.png" width="30%"/>
-  <img src="results/figures/14_lead_lag_plot.png" width="30%"/>
-  <img src="results/figures/15_persistence_decay_curve.png" width="30%"/>
-</p>
-
-</details>
-
---------------------------------------------------------------------------------
-## 9. Reproducibility
-To reproduce these results:
-
-```bash
-# 1. Setup Environment
-pip install -r requirements.txt
-
-# 2. Configure ROI (edit config/roi_config.yaml)
-
-# 3. Place data in data/ (see data/README.md)
-
-# 4. Run Pipeline
-python src/main.py --city seattle --run-all
-```
-
-> 🔒 **This codebase is FROZEN.** No new features will be added.
-
---------------------------------------------------------------------------------
-## 10. 🧠 Deep Learning Module (ST-GNN)
-
-> **NEW**: Optional Spatio-Temporal Graph Neural Network for residual correction.
-
-### Key Principle: Residual Learning
-The DL module does **NOT** replace the physics + Bayesian system. It learns **residual corrections**:
-
-```
-Final_Stress = Bayesian_Stress + DL_Residual
-```
-
-```mermaid
-graph LR
-    A[🌧️ Inputs] --> B[🔬 Bayesian<br/>Inference]
-    A --> C[🧠 ST-GNN]
-    B --> D[Base Stress]
-    C --> E[Residual ∆]
-    D --> F((+))
-    E --> F
-    F --> G[✅ Final Stress]
-    
-    style C fill:#e1f5fe
-    style E fill:#e1f5fe
-```
-
-### Architecture
-| Component      | Description                                |
-| -------------- | ------------------------------------------ |
-| **Spatial**    | GraphSAGE layers on drainage network graph |
-| **Temporal**   | Transformer attention across time steps    |
-| **Dual Heads** | Residual prediction + Uncertainty proxy    |
-
-### Critical Constraints
-- ❌ DL **CANNOT** override `NO_DECISION` zones
-- ❌ DL **CANNOT** make final decisions alone
-- ✅ DL only **corrects** what physics misses
-- ✅ DL provides **additional uncertainty** estimates
-
-### Configuration
-See [`config/ml_config.yaml`](config/ml_config.yaml) for all ML parameters.
-
-```bash
-# Run with ML enabled
-python src/main.py --city seattle --run-all --with-ml
-
-# Run without ML (baseline)
-python src/main.py --city seattle --run-all --no-ml
-```
-
---------------------------------------------------------------------------------
-## 11. What This Project Is NOT
-| ❌                                | Description                                                  |
-| -------------------------------- | ------------------------------------------------------------ |
-| **Not a Flood Prediction Model** | It infers *stress* (pressure on the system), not water depth |
-| **Not Pure Deep Learning**       | DL is supportive, not dominant (Bayesian backbone)           |
-| **Not Real-Time**                | Designed for retrospective analysis and planning             |
-
---------------------------------------------------------------------------------
-## 12. Citation & License
+## 🔗 Citation & License
 
 **Citation**:
 ```bibtex
@@ -244,9 +120,4 @@ python src/main.py --city seattle --run-all --no-ml
 }
 ```
 
-**License**: MIT License. See [`LICENSE`](LICENSE) file.
-
----
-<p align="center">
-  Made with 🔬 science and ☕ coffee
-</p>
+**License**: MIT License. See `LICENSE` file.

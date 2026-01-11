@@ -557,7 +557,13 @@ class FullMathCoreInferenceEngine:
         self, upstream: np.ndarray, dem: np.ndarray
     ) -> np.ndarray:
         """Module 5: Compute terrain-aware anisotropic distances."""
-        h, w = upstream.shape
+        # Handle 3D arrays by taking first timestep or mean
+        if upstream.ndim == 3:
+            upstream_2d = upstream[0]
+        else:
+            upstream_2d = upstream
+            
+        h, w = upstream_2d.shape
         
         # Compute gradient-based metric tensor
         grad_y, grad_x = np.gradient(dem)
@@ -572,10 +578,16 @@ class FullMathCoreInferenceEngine:
         self, upstream: np.ndarray, rainfall: np.ndarray
     ) -> np.ndarray:
         """Module 6: Estimate spatially-varying length scales."""
-        h, w = upstream.shape
+        # Handle 3D arrays
+        if upstream.ndim == 3:
+            upstream_2d = np.mean(upstream, axis=0)
+        else:
+            upstream_2d = upstream
+            
+        h, w = upstream_2d.shape
         
         # Length scale inversely proportional to upstream gradient
-        grad = np.sqrt(np.gradient(upstream, axis=0)**2 + np.gradient(upstream, axis=1)**2)
+        grad = np.sqrt(np.gradient(upstream_2d, axis=0)**2 + np.gradient(upstream_2d, axis=1)**2)
         grad_norm = grad / (grad.max() + EPSILON)
         
         # Smaller length scale where gradient is high
@@ -593,9 +605,14 @@ class FullMathCoreInferenceEngine:
         global_mean = np.mean(rainfall)
         global_var = np.var(rainfall) + 0.1
         
-        # Local modulation by upstream
-        upstream_norm = upstream / (upstream.max() + EPSILON)
-        local_scale = 0.5 + upstream_norm
+        # Local modulation by upstream - handle 3D upstream
+        if upstream.ndim == 3:
+            upstream_mean = np.mean(upstream, axis=0)  # Average over time
+        else:
+            upstream_mean = upstream
+            
+        upstream_norm = upstream_mean / (upstream_mean.max() + EPSILON)
+        local_scale = 0.5 + upstream_norm  # 2D array (h, w)
         
         # Construct prior
         prior_mean = np.zeros((t, h, w))
@@ -838,7 +855,14 @@ class FullMathCoreInferenceEngine:
         
         # Evidence from upstream (terrain)
         upstream_norm = upstream / (upstream.max() + EPSILON)
-        terrain_evidence = upstream_norm[np.newaxis, :, :]
+        
+        # Handle dimensionality for broadcasting
+        if upstream_norm.ndim == 2:
+            # (H, W) -> (1, H, W) to broadcast over time
+            terrain_evidence = upstream_norm[np.newaxis, :, :]
+        else:
+            # Already (T, H, W) or compatible
+            terrain_evidence = upstream_norm
         
         # Combine evidence (simplified Dempster's rule)
         combined_belief = (
@@ -860,22 +884,35 @@ class FullMathCoreInferenceEngine:
         self, mean: np.ndarray, var: np.ndarray
     ) -> Dict[str, Any]:
         """Module 17: Compute hierarchical spatial aggregation."""
-        t, h, w = mean.shape
+        # Handle various input shapes
+        if mean.ndim == 4:
+            # Shape: (n_samples, t, h, w)
+            mean = mean[0]  # Take first sample
+            var = var[0] if var.ndim == 4 else var
+        
+        if mean.ndim == 3:
+            t, h, w = mean.shape
+        else:
+            # 2D case
+            h, w = mean.shape
+            t = 1
+            mean = mean[np.newaxis, ...]
+            var = var[np.newaxis, ...]
         
         # Create spatial hierarchy (4 levels)
         aggregations = {}
         
         # Level 0: Full resolution
-        aggregations['level_0'] = {'mean': np.mean(mean), 'var': np.mean(var)}
+        aggregations['level_0'] = {'mean': float(np.mean(mean)), 'var': float(np.mean(var))}
         
         # Level 1: 2x2 blocks
         if h >= 4 and w >= 4:
-            block_mean = mean[:, ::2, ::2].mean()
+            block_mean = float(mean[:, ::2, ::2].mean())
             aggregations['level_1'] = {'mean': block_mean}
         
         # Level 2: 4x4 blocks
         if h >= 8 and w >= 8:
-            block_mean = mean[:, ::4, ::4].mean()
+            block_mean = float(mean[:, ::4, ::4].mean())
             aggregations['level_2'] = {'mean': block_mean}
         
         return {'aggregations': aggregations, 'n_levels': len(aggregations)}
@@ -949,10 +986,33 @@ class FullMathCoreInferenceEngine:
     
     def _compute_anisotropy_ratio(self, mean: np.ndarray) -> float:
         """Compute spatial anisotropy ratio."""
-        grad_y, grad_x = np.gradient(mean.mean(axis=0))
-        
-        var_y = np.var(grad_y)
-        var_x = np.var(grad_x)
-        
-        ratio = max(var_y, var_x) / (min(var_y, var_x) + EPSILON)
-        return float(ratio)
+        # Ensure we have a 2D spatial field
+        if mean.ndim == 3:
+            spatial_field = mean.mean(axis=0)
+        elif mean.ndim == 4:
+            # Handle (Batch, Time, H, W) or similar
+            spatial_field = mean.mean(axis=(0, 1))
+        elif mean.ndim == 2:
+            spatial_field = mean
+        else:
+            # Fallback for unexpected shapes
+            try:
+                spatial_field = mean.mean(axis=0)
+            except:
+                return 1.0
+                
+        # Ensure it's 2D now
+        if spatial_field.ndim != 2:
+            return 1.0
+            
+        try:
+            grad_y, grad_x = np.gradient(spatial_field)
+            
+            var_y = np.var(grad_y)
+            var_x = np.var(grad_x)
+            
+            ratio = max(var_y, var_x) / (min(var_y, var_x) + EPSILON)
+            return float(ratio)
+        except Exception as e:
+            logger.warning(f"Anisotropy computation failed: {e}")
+            return 1.0

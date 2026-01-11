@@ -50,3 +50,23 @@ Thumbs.db
 .env
 *.key
 credentials.json
+
+# ============================================
+# PROPRIETARY / LARGE FILES (DO NOT SHARE)
+# ============================================
+
+# Trained Models (proprietary)
+checkpoints/*.pt
+checkpoints/*.pth
+*.pt
+*.pth
+
+# Kaggle Bundle (regenerable)
+*.zip
+
+# Large Result Images (regenerable)
+results/**/*.png
+results/**/*.json
+
+# Keep only structure
+!results/.gitkeep
